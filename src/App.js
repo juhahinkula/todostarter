@@ -1,5 +1,11 @@
 import React, { useState }  from 'react'
 import { AgGridReact } from 'ag-grid-react';
+import Button from'@mui/material/Button';
+import TextField from'@mui/material/TextField';
+import Stack from'@mui/material/Stack';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 
 import './App.css';
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -26,10 +32,32 @@ function App() {
 
   return (
     <div className="App">
-      <input name="desc" value={todo.desc} onChange={inputChanged}/>
-      <input name="date" value={todo.date} onChange={inputChanged}/>
-      <input name="priority" value={todo.priority} onChange={inputChanged}/>
-      <button onClick={addTodo}>Add</button>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6">Todos</Typography>
+        </Toolbar>
+      </AppBar>
+      <Stack direction="row" spacing={2} justifyContent="center" alignItems="center">
+        <TextField 
+          label="Description"
+          name="desc" 
+          value={todo.desc}
+          variant="standard"
+          onChange={inputChanged}/>
+        <TextField 
+          label="Date"
+          name="date" 
+          value={todo.date} 
+          variant="standard"
+          onChange={inputChanged}/>
+        <TextField 
+          label="Priority"
+          name="priority" 
+          value={todo.priority}
+          variant="standard" 
+          onChange={inputChanged}/>
+        <Button variant="contained" onClick={addTodo}>Add</Button>
+      </Stack>
       <div className="ag-theme-material" style={{height: 400, width: 600, margin: 'auto'}}>
         <AgGridReact
           rowData={todos}
